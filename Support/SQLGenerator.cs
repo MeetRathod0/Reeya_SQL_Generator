@@ -179,7 +179,7 @@ AS BEGIN
         INSERT INTO {7}
         (
 {8}
-        );
+        )
         VALUES 
         (
 {9}
