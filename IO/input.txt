@@ -1,0 +1,12 @@
+﻿	id varchar(max) primary key identity,
+name varchar(max) not null,
+age int,
+dob date,
+-- fname varchar(123),
+ettime datetime
+itime time
+
+
+
+
+c

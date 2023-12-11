@@ -1,0 +1,38 @@
+
+CREATE OR ALTER PROCEDURE upsert_student 
+	@tvp tvp_student READONLY
+AS BEGIN
+	MERGE INTO student AS dest
+	USING (
+		SELECT
+		    id,
+		    name,
+		    age,
+		    dob,
+		    ettime,
+		    itime
+		FROM @tvp
+	) AS source ON 
+        dest.id = source.id
+	WHEN MATCHED THEN UPDATE SET
+	    dest.name = source.name,
+	    dest.age = source.age,
+	    dest.dob = source.dob,
+	    dest.ettime = source.ettime,
+	    dest.itime = source.itime
+	WHEN NOT MATCHED THEN INSERT 
+	(
+	    name,
+	    age,
+	    dob,
+	    ettime,
+	    itime
+	) VALUES
+	(
+	    source.name,
+	    source.age,
+	    source.dob,
+	    source.ettime,
+	    source.itime
+	);
+END;
